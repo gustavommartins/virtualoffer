@@ -18,15 +18,15 @@
 
       <div class="card-body">
         <div>
-          <h5 class="card-title" th:text="${pedido.nomeProduto}">Nome produto</h5>
-          <p class="card-text">Valor: <span th:text="${pedido.valorNegociado}" >200,99</span></p>
-          <p class="card-text">Data da entrega: <span th:text="${pedido.dataEntrega}">31/08/1999</span></p>
+          <h5 class="card-title mb-2" th:text="${pedido.nomeProduto}">Nome produto</h5>
+          <p class="card-text fs-5"><span class="fw-semibold">Valor: </span><span th:text="${pedido.valorNegociado}" >200,99</span></p>
+          <p class="card-text mb-3"><span class="fw-semibold">Data da entrega: </span><span th:text="${pedido.dataEntrega}">31/08/1999</span></p>
         </div>
         <div>
-          <label th:for="'url-'+${status.index}" class="form-label">Link do Produto</label>
-          <input th:id="'url-'+${status.index}" class="form-control" th:value="${pedido.url}" value="url do produto"/>
+          <label th:for="'url-'+${status.index}" class="form-label fw-semibold">Link do Produto</label>
+          <input th:id="'url-'+${status.index}" class="form-control mb-3" th:value="${pedido.url}" value="url do produto"/>
 
-          <label th:for="'descricao-'+${status.index}" class="form-label">Descrição do Produto</label>
+          <label th:for="'descricao-'+${status.index}" class="form-label fw-semibold">Descrição do Produto</label>
           <textarea th:id="'descricao-'+${status.index}" style="height: 150px" class="form-control" th:text="${pedido.descricao}" translate="yes" readonly>Descrição do pedido</textarea>
         </div>
       </div>
