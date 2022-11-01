@@ -1,15 +1,21 @@
 package br.com.gustavom.virtualoffer.model;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-
+@Entity
 public class Pedido {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String nomeProduto;
     private BigDecimal valorNegociado;
     private LocalDate dataEntrega;
+    @Column(length = 500)
     private String url;
     private String imagem;
+    @Column(length = 500)
     private String descricao;
 
     public String getNomeProduto() {
