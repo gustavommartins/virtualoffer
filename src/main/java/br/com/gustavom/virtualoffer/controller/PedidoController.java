@@ -40,7 +40,7 @@ public class PedidoController {
         //TODO then create a mapper novoPedidoDTO to Pedido
         Pedido pedido = novoPedido.pedidoTo();
         repository.save(pedido);
-        return "redirect:/";
+        return "redirect:/meus_pedidos/todos";
     }
 
     private Model createTituloDescricaoNavbar(Model ui) {
