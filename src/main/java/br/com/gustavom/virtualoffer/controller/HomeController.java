@@ -23,9 +23,9 @@ public class HomeController {
     }
 
     @GetMapping("/")
-    public String home(Model page){
+    public String home(Model ui){
         List<Pedido> pedidos = repository.findAll();
-        page.addAttribute("pedidos", pedidos);
+        ui.addAttribute("pedidos", pedidos);
         return "home";
     }
 
