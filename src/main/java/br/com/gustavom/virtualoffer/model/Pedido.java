@@ -1,5 +1,7 @@
 package br.com.gustavom.virtualoffer.model;
 
+import br.com.gustavom.virtualoffer.enums.StatusPedido;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -17,6 +19,9 @@ public class Pedido {
     private String imagem;
     @Column(length = 500)
     private String descricao;
+    @Enumerated(EnumType.STRING)
+    @Column(length = 30)
+    private StatusPedido statusPedido;
 
     public String getNomeProduto() {
         return nomeProduto;
@@ -64,5 +69,21 @@ public class Pedido {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public StatusPedido getStatusPedido() {
+        return statusPedido;
+    }
+
+    public void setStatusPedido(StatusPedido statusPedido) {
+        this.statusPedido = statusPedido;
     }
 }
