@@ -26,12 +26,14 @@ public class PedidoController {
     }
 
     @GetMapping("/novo_pedido")
-    public String formulario(@ModelAttribute("novoPedido") NovoPedidoDTO novoPedido) {
+    public String formulario(@ModelAttribute("novoPedido") NovoPedidoDTO novoPedido, Model ui) {
+        ui = createTituloDescricaoNavbar(ui);
         return "pedido/formulario";
     }
 
     @PostMapping("/novo")
-    public String novoPedido(@Valid @ModelAttribute("novoPedido") NovoPedidoDTO novoPedido, BindingResult validate) {
+    public String novoPedido(@Valid @ModelAttribute("novoPedido") NovoPedidoDTO novoPedido, BindingResult validate, Model ui) {
+        ui = createTituloDescricaoNavbar(ui);
         if (validate.hasErrors()) {
             return "pedido/formulario";
         }
@@ -39,6 +41,12 @@ public class PedidoController {
         Pedido pedido = novoPedido.pedidoTo();
         repository.save(pedido);
         return "redirect:/";
+    }
+
+    private Model createTituloDescricaoNavbar(Model ui) {
+        ui.addAttribute("status", new String("novo pedido"));
+        ui.addAttribute("descricaoPagina", new String("Aqui você pode fazer novos pedidos na plataforma."));
+        return ui;
     }
 
 }

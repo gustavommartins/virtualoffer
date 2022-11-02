@@ -7,7 +7,7 @@
 
 <main class="container">
 
-    <section th:replace="~{main :: navbar('Novo','Aqui você pode fazer novos pedidos na plataforma.')}"></section>
+    <section th:replace="~{main :: navbar}"></section>
 
     <section class="mb-4">
         <form th:object="${novoPedido}" class="card p-4" method="post" action="/pedido/novo">

@@ -7,7 +7,7 @@
 
   <main class="container">
 
-  <section th:replace="~{main :: navbar('Todos','Aqui você pode encontrar todos os seus pedidos.')}"></section>
+  <section th:replace="~{main :: navbar}"></section>
 
     <section>
       <div class="card col-md-12 col-lg-8 container p-0 mb-4" th:each="pedido,status : ${pedidos}">
@@ -22,8 +22,8 @@
             <div class="col-8">
               <div>
                 <div>
-                  <p class="card-text fs-5 mb-4"><span class="fw-semibold">Valor: </span><span th:text="${pedido.valorNegociado}" >200,99</span></p>
-                  <p class="card-text mb-4"><span class="fw-semibold">Data da entrega: </span><span th:text="${pedido.dataEntrega}">31/08/1999</span></p>
+                  <p class="card-text fs-5 mb-4"><span class="fw-semibold">Valor: </span><span th:if="${pedido.valorNegociado != null}" th:text="${'R$ ' + #numbers.formatDecimal(pedido.valorNegociado,3,'POINT',2,'COMMA')}" >200,99</span></p>
+                  <p class="card-text mb-4"><span class="fw-semibold">Data da entrega: </span><span th:text="${#temporals.format(pedido.dataEntrega, 'dd/MM/yyyy', locale)}">31/08/1999</span></p>
                   <label th:for="'url-'+${status.index}" class="form-label mb-4 fw-semibold">Link do Produto</label>
                   <input th:id="'url-'+${status.index}" class="form-control mb-4" th:value="${pedido.url}" value="url do produto"/>
                   <th:block th:switch="${pedido.statusPedido.name()}">

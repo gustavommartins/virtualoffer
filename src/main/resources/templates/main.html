@@ -18,20 +18,20 @@
     </div>
 </section>
 
-<section th:fragment="navbar(titulo, descicao)" class="mt-4">
+<section th:fragment="navbar" class="mt-4">
     <div class="p-5 border-success mt-5" style="background-color:#20c997; border-radius: 15px 15px 0px 0px;">
         <div class="container-fluid py-5">
-            <h1 class="display-5 fw-bold text-white" th:text="${titulo}"></h1>
-            <p class="col-md-8 fs-4 text-white" th:text="${descicao}"></p>
+            <h1 class="display-5 fw-bold text-white" th:text="${#strings.capitalize(status)}"></h1>
+            <p class="col-md-8 fs-4 text-white" th:text="${descricaoPagina}"></p>
         </div>
     </div>
     <nav class="navbar navbar-expand-lg navbar-dark mb-4" style="background-color:#20c997; border-radius: 0px 0px 5px 5px;">
         <div class="container-fluid d-flex">
             <div class="navbar-nav">
-                <a class="nav-link text-white" aria-current="page" href="/">Todos</a>
-                <a class="nav-link text-white" href="#">Aguardando</a>
-                <a class="nav-link text-white" href="#">Aprovado</a>
-                <a class="nav-link text-white" href="#">Entregue</a>
+                <a th:classappend="${status} == 'todos' ? 'fw-bold' : '' " class="nav-link text-white" aria-current="page" href="/meus_pedidos/todos">Todos</a>
+                <a th:classappend="${status} == 'aguardando' ? 'fw-bold' : ''" class="nav-link text-white" href="/meus_pedidos/aguardando">Aguardando</a>
+                <a th:classappend="${status} == 'aprovado' ? 'fw-bold' : '' " class="nav-link text-white" href="/meus_pedidos/aprovado">Aprovado</a>
+                <a th:classappend="${status} == 'entregue' ? 'fw-bold' : '' " class="nav-link text-white" href="/meus_pedidos/entregue">Entregue</a>
             </div>
             <div>
                 <a class="btn btn-outline-success text-white border-white" href="/pedido/novo_pedido">Novo</a>
