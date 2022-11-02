@@ -1,36 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <title>Novo Pedido</title>
-
-    <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <!-- JavaScript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-
-</head>
+<head th:replace="~{main :: head('Novo Pedido')}"></head>
 <body>
 
-<section class="container">
-    <section class="mt-4">
-        <div class="p-5 border-success mt-5" style="background-color:#20c997; border-radius: 15px 15px 0px 0px;">
-            <div class="container-fluid py-5">
-                <h1 class="display-5 fw-bold text-white">Novo Pedido</h1>
-                <p class="col-md-8 fs-4 text-white">Aqui você pode fazer um novo pedido em nossa plataforma!</p>
-            </div>
-        </div>
-        <nav class="navbar navbar-expand-lg navbar-dark mb-4" style="background-color:#20c997; border-radius: 0px 0px 5px 5px;">
-            <div class="container-fluid d-flex">
-                <div class="navbar-nav">
-                    <a class="nav-link text-white" aria-current="page" href="/">Todos</a>
-                    <a class="nav-link text-white" href="#">Aguardando</a>
-                    <a class="nav-link text-white" href="#">Aprovado</a>
-                    <a class="nav-link text-white" href="#">Entregue</a>
-                </div>
-            </div>
-        </nav>
-    </section>
+<section th:replace="~{main :: navtab}"></section>
+
+<main class="container">
+
+    <section th:replace="~{main :: navbar('Novo','Aqui você pode fazer novos pedidos na plataforma.')}"></section>
 
     <section class="mb-4">
         <form th:object="${novoPedido}" class="card p-4" method="post" action="/pedido/novo">
@@ -64,6 +41,6 @@
         </form>
     </section>
 
-</section>
+</main>
 </body>
 </html>
