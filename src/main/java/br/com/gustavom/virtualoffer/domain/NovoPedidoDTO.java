@@ -2,10 +2,16 @@ package br.com.gustavom.virtualoffer.domain;
 
 import br.com.gustavom.virtualoffer.model.Pedido;
 
+import javax.validation.constraints.NotBlank;
+
 public class NovoPedidoDTO {
 
+    //TODO criar novas validações como de tamanho dos campos
+    @NotBlank(message = "{error.nomeProduto}")
     public String nomeProduto;
+    @NotBlank(message = "{error.urlProduto}")
     public String urlProduto;
+    @NotBlank(message = "{error.imagemProduto}")
     public String imagemProduto;
     public String descricaoProduto;
 
@@ -41,7 +47,7 @@ public class NovoPedidoDTO {
         this.descricaoProduto = descricaoProduto;
     }
 
-    public Pedido pedidoTo(){
+    public Pedido pedidoTo() {
         Pedido pedido = new Pedido();
         pedido.setUrl(this.urlProduto);
         pedido.setDescricao(this.descricaoProduto);

@@ -33,25 +33,31 @@
     </section>
 
     <section class="mb-4">
-        <form class="card p-4" method="post" action="/pedido/novo">
+        <form th:object="${novoPedido}" class="card p-4" method="post" action="/pedido/novo">
             <div class="mb-3">
-                <label for="produto" class="form-label">Produto</label>
-                <input name="nomeProduto" type="text" class="form-control" id="produto" aria-describedby="produtoHelp" placeholder="Nome do produto">
+                <label for="nomeProduto" class="form-label">Produto</label>
+                <input th:field="${novoPedido.nomeProduto}" type="text" th:errorclass="is-invalid" class="form-control" id="nomeProduto" aria-describedby="produtoHelp" placeholder="Nome do produto">
+                <div th:errors="${novoPedido.nomeProduto}" class="invalid-feedback">
+                </div>
                 <div id="produtoHelp" class="form-text">Informe o nome do produto.</div>
             </div>
             <div class="mb-3">
-                <label for="url" class="form-label">URL</label>
-                <input name="urlProduto" type="text" class="form-control" id="url" aria-describedby="urlHelp" placeholder="Url do produto">
+                <label for="urlProduto" class="form-label">URL</label>
+                <input th:field="${novoPedido.urlProduto}" type="text" th:errorclass="is-invalid" class="form-control" id="urlProduto" aria-describedby="urlHelp" placeholder="Url do produto">
+                <div th:errors="${novoPedido.urlProduto}" class="invalid-feedback">
+                </div>
                 <div id="urlHelp" class="form-text">Procure em algum site o produto que você deseja e coloque aqui a sua respectiva url.</div>
             </div>
             <div class="mb-3">
-                <label for="imagem" class="form-label">Imagem</label>
-                <input name="imagemProduto" type="text" class="form-control" id="imagem" aria-describedby="imagemHelp" placeholder="Imagem do produto">
+                <label for="imagemProduto" class="form-label">Imagem</label>
+                <input th:field="${novoPedido.imagemProduto}" type="text" th:errorclass="is-invalid" class="form-control" id="imagemProduto" aria-describedby="imagemHelp" placeholder="Imagem do produto">
+                <div th:errors="${novoPedido.imagemProduto}" class="invalid-feedback">
+                </div>
                 <div id="imagemHelp" class="form-text">Procure uma imagem que descreva como é o seu produto e coloque a url da imagem aqui.</div>
             </div>
             <div class="mb-3">
-                <label for="descricao" class="form-label">Descrição</label>
-                <textarea name="descricaoProduto" class="form-control" id="descricao" aria-describedby="descricaoHelp" placeholder="Descrição do produto" style="height: 100px"></textarea>
+                <label for="descricaoProduto" class="form-label">Descrição</label>
+                <textarea th:field="${novoPedido.descricaoProduto}" class="form-control"  id="descricaoProduto" aria-describedby="descricaoHelp" placeholder="Descrição do produto" style="height: 100px"></textarea>
                 <div id="descricaoHelp" class="form-text">Coloque aqui a descrição do seu produto.</div>
             </div>
             <button type="submit" class="btn btn-success">Fazer novo pedido!</button>
