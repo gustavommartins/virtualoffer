@@ -1,6 +1,7 @@
 package br.com.gustavom.virtualoffer.controller;
 
 import br.com.gustavom.virtualoffer.domain.NovoPedidoDTO;
+import br.com.gustavom.virtualoffer.mappers.PedidoMapper;
 import br.com.gustavom.virtualoffer.model.Pedido;
 import br.com.gustavom.virtualoffer.repository.PedidoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +20,12 @@ import jakarta.validation.Valid;
 public class PedidoController {
 
     private final PedidoRepository repository;
+    private final PedidoMapper pedidoMapper;
 
     @Autowired
-    public PedidoController(PedidoRepository repository) {
+    public PedidoController(PedidoRepository repository, PedidoMapper pedidoMapper) {
         this.repository = repository;
+        this.pedidoMapper = pedidoMapper;
     }
 
     @GetMapping("/novo_pedido")
@@ -37,8 +40,7 @@ public class PedidoController {
         if (validate.hasErrors()) {
             return "pedido/formulario";
         }
-        //TODO then create a mapper novoPedidoDTO to Pedido
-        Pedido pedido = novoPedido.pedidoTo();
+        Pedido pedido = pedidoMapper.criaNovoPedido(novoPedido);
         repository.save(pedido);
         return "redirect:/meus_pedidos/todos";
     }
