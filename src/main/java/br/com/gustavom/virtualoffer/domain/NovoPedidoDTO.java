@@ -1,7 +1,6 @@
 package br.com.gustavom.virtualoffer.domain;
 
 import br.com.gustavom.virtualoffer.enums.StatusPedido;
-import br.com.gustavom.virtualoffer.model.Pedido;
 import jakarta.validation.constraints.NotBlank;
 
 public class NovoPedidoDTO {
@@ -14,6 +13,7 @@ public class NovoPedidoDTO {
     @NotBlank(message = "{error.imagemProduto}")
     public String imagemProduto;
     public String descricaoProduto;
+    private StatusPedido statusPedido;
 
     public String getNomeProduto() {
         return nomeProduto;
@@ -47,14 +47,11 @@ public class NovoPedidoDTO {
         this.descricaoProduto = descricaoProduto;
     }
 
-    public Pedido pedidoTo() {
-        Pedido pedido = new Pedido();
-        pedido.setUrl(this.urlProduto);
-        pedido.setDescricao(this.descricaoProduto);
-        pedido.setImagem(this.imagemProduto);
-        pedido.setNomeProduto(this.nomeProduto);
-        pedido.setStatusPedido(StatusPedido.AGUARDANDO);
-        return pedido;
+    public StatusPedido getStatusPedido() {
+        return statusPedido;
     }
 
+    public void setStatusPedido(StatusPedido statusPedido) {
+        this.statusPedido = statusPedido;
+    }
 }
