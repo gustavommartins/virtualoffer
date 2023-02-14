@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/pedido")
 public class PedidoController {
 
-    private PedidoRepository repository;
+    private final PedidoRepository repository;
 
     @Autowired
     public PedidoController(PedidoRepository repository) {
@@ -44,8 +44,8 @@ public class PedidoController {
     }
 
     private Model createTituloDescricaoNavbar(Model ui) {
-        ui.addAttribute("status", new String("novo pedido"));
-        ui.addAttribute("descricaoPagina", new String("Aqui você pode fazer novos pedidos na plataforma."));
+        ui.addAttribute("status", "novo pedido");
+        ui.addAttribute("descricaoPagina", "Aqui você pode fazer novos pedidos na plataforma.");
         return ui;
     }
 

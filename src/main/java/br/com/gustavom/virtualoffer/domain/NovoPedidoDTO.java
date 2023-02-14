@@ -2,8 +2,7 @@ package br.com.gustavom.virtualoffer.domain;
 
 import br.com.gustavom.virtualoffer.enums.StatusPedido;
 import br.com.gustavom.virtualoffer.model.Pedido;
-
-import javax.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotBlank;
 
 public class NovoPedidoDTO {
 

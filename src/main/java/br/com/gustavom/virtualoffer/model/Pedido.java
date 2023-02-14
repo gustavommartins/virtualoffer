@@ -1,8 +1,8 @@
 package br.com.gustavom.virtualoffer.model;
 
 import br.com.gustavom.virtualoffer.enums.StatusPedido;
+import jakarta.persistence.*;
 
-import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 @Entity

@@ -8,16 +8,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.util.ArrayList;
+import java.time.ZoneId;
 import java.util.List;
 
 @Controller
 @RequestMapping("/meus_pedidos")
 public class HomeController {
 
-    private PedidoRepository repository;
+    private final PedidoRepository repository;
 
     @Autowired
     public HomeController(PedidoRepository repository) {
@@ -28,8 +26,9 @@ public class HomeController {
     public String todosOsPedidos(Model ui){
         List<Pedido> pedidos = repository.findAll();
         ui.addAttribute("pedidos", pedidos);
-        ui.addAttribute("status", new String("todos"));
-        ui.addAttribute("descricaoPagina", new String("Aqui você encontra todos os seus pedidos em nossa plataforma."));
+        ui.addAttribute("status", "todos");
+        ui.addAttribute("descricaoPagina", "Aqui você encontra todos os seus pedidos em nossa plataforma.");
+        ui.addAttribute("locale", ZoneId.of("America/Sao_Paulo"));
         return "home";
     }
 
@@ -37,7 +36,8 @@ public class HomeController {
     public String todosOsPedidos(@PathVariable("status") @ModelAttribute("status") String status, Model ui){
         List<Pedido> pedidos = repository.findByStatusPedido(StatusPedido.valueOf(status.toUpperCase()));
         ui.addAttribute("pedidos", pedidos);
-        ui.addAttribute("descricaoPagina", new String("Aqui você encontra todos os seus pedidos com o status " + status + "."));
+        ui.addAttribute("descricaoPagina", "Aqui você encontra todos os seus pedidos com o status " + status + ".");
+        ui.addAttribute("locale", ZoneId.of("America/Sao_Paulo"));
         return "home";
     }
 
