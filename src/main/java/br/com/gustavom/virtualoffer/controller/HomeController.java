@@ -12,7 +12,6 @@ import java.time.ZoneId;
 import java.util.List;
 
 @Controller
-@RequestMapping("/meus_pedidos")
 public class HomeController {
 
     private final PedidoRepository repository;
@@ -22,7 +21,7 @@ public class HomeController {
         this.repository = repository;
     }
 
-    @GetMapping("/todos")
+    @RequestMapping("/home")
     public String todosOsPedidos(Model ui){
         List<Pedido> pedidos = repository.findAll();
         ui.addAttribute("pedidos", pedidos);
@@ -32,7 +31,7 @@ public class HomeController {
         return "home";
     }
 
-    @GetMapping("/{status}")
+    @GetMapping("/meus_pedidos/{status}")
     public String todosOsPedidos(@PathVariable("status") @ModelAttribute("status") String status, Model ui){
         List<Pedido> pedidos = repository.findByStatusPedido(StatusPedido.valueOf(status.toUpperCase()));
         ui.addAttribute("pedidos", pedidos);
@@ -43,7 +42,7 @@ public class HomeController {
 
     @ExceptionHandler(IllegalArgumentException.class)
     public String onError(){
-        return "redirect:/meus_pedidos/todos";
+        return "redirect:/home";
     }
 
 }

@@ -42,7 +42,7 @@ public class PedidoController {
         }
         Pedido pedido = pedidoMapper.criaNovoPedido(novoPedido);
         repository.save(pedido);
-        return "redirect:/meus_pedidos/todos";
+        return "redirect:/home";
     }
 
     private Model createTituloDescricaoNavbar(Model ui) {
