@@ -30,25 +30,21 @@ public class PedidoController {
 
     @GetMapping("/novo_pedido")
     public String formulario(@ModelAttribute("novoPedido") NovoPedidoDTO novoPedido, Model ui) {
-        ui = createTituloDescricaoNavbar(ui);
+        ui.addAttribute("status", "novo pedido");
+        ui.addAttribute("descricaoPagina", "Aqui você pode fazer novos pedidos na plataforma.");
         return "pedido/formulario";
     }
 
     @PostMapping("/novo")
     public String novoPedido(@Valid @ModelAttribute("novoPedido") NovoPedidoDTO novoPedido, BindingResult validate, Model ui) {
-        ui = createTituloDescricaoNavbar(ui);
+        ui.addAttribute("status", "novo pedido");
+        ui.addAttribute("descricaoPagina", "Aqui você pode fazer novos pedidos na plataforma.");
         if (validate.hasErrors()) {
             return "pedido/formulario";
         }
         Pedido pedido = pedidoMapper.criaNovoPedido(novoPedido);
         repository.save(pedido);
         return "redirect:/home";
-    }
-
-    private Model createTituloDescricaoNavbar(Model ui) {
-        ui.addAttribute("status", "novo pedido");
-        ui.addAttribute("descricaoPagina", "Aqui você pode fazer novos pedidos na plataforma.");
-        return ui;
     }
 
 }
