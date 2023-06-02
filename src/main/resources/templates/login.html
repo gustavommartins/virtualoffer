@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" lang="pt-br">
+<head th:replace="~{main :: head('Login')}"></head>
+
+<body>
+
+<section th:replace="~{main :: navtab_login}"></section>
+
+<main class="container">
+
+  <section th:replace="~{main :: navbar_login}"></section>
+
+<form th:action="@{/login}" method="post" class="card p-4">
+  <div class="mb-3">
+    <label for="username" class="form-label">Usuário</label>
+    <input type="text" name="username" id="username" placeholder="Usuário" th:class="${param.error}?'is-invalid form-control' : 'form-control'"/>
+  </div>
+  <div class="mb-3">
+    <label for="password" class="form-label">Senha</label>
+    <input type="password" name="password" id="password" placeholder="Senha" th:class="${param.error}?'is-invalid form-control' : 'form-control'"/>
+  </div>
+  <div th:if="${param.error}" class="mt-3 mb-3 fst-italic text-danger">
+    Usuário ou senha incorretos.
+  </div>
+  <div th:if="${param.logout}" class="mt-3 mb-3 fst-italic text-danger">
+    You have been logged out.
+  </div>
+  <button type="submit" class="btn btn-success">Logar</button>
+</form>
+</main>
+</body>
+</html>
