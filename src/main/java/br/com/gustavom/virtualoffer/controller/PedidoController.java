@@ -44,7 +44,7 @@ public class PedidoController {
         }
         Pedido pedido = pedidoMapper.criaNovoPedido(novoPedido);
         repository.save(pedido);
-        return "redirect:/home";
+        return "redirect:/";
     }
 
 }
