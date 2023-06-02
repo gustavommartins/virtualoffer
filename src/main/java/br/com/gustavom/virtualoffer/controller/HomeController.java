@@ -21,7 +21,7 @@ public class HomeController {
         this.repository = repository;
     }
 
-    @RequestMapping("/home")
+    @RequestMapping("/")
     public String todosOsPedidos(Model ui){
         List<Pedido> pedidos = repository.findAll();
         ui.addAttribute("pedidos", pedidos);
@@ -42,7 +42,7 @@ public class HomeController {
 
     @ExceptionHandler(IllegalArgumentException.class)
     public String onError(){
-        return "redirect:/home";
+        return "redirect:/";
     }
 
 }
