@@ -42,9 +42,9 @@ public class PedidoController {
         if (validate.hasErrors()) {
             return "pedido/formulario";
         }
-        Pedido pedido = pedidoMapper.criaNovoPedido(novoPedido);
+        Pedido pedido = pedidoMapper.mapper(novoPedido);
         repository.save(pedido);
-        return "redirect:/";
+        return "redirect:/meus_pedidos/todos";
     }
 
 }

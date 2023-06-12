@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.time.ZoneId;
 import java.util.List;
 
@@ -21,14 +22,14 @@ public class HomeController {
         this.repository = repository;
     }
 
-    @RequestMapping("/")
-    public String todosOsPedidos(Model ui){
-        List<Pedido> pedidos = repository.findAll();
+    @RequestMapping("/meus_pedidos/todos")
+    public String todosOsPedidos(Model ui, Principal principal){
+        List<Pedido> pedidos = repository.findAllByUser(principal.getName());
         ui.addAttribute("pedidos", pedidos);
         ui.addAttribute("status", "todos");
         ui.addAttribute("descricaoPagina", "Aqui você encontra todos os seus pedidos em nossa plataforma.");
         ui.addAttribute("locale", ZoneId.of("America/Sao_Paulo"));
-        return "home";
+        return "pedido/home";
     }
 
     @GetMapping("/meus_pedidos/{status}")
@@ -37,7 +38,7 @@ public class HomeController {
         ui.addAttribute("pedidos", pedidos);
         ui.addAttribute("descricaoPagina", "Aqui você encontra todos os seus pedidos com o status " + status + ".");
         ui.addAttribute("locale", ZoneId.of("America/Sao_Paulo"));
-        return "home";
+        return "pedido/home";
     }
 
     @ExceptionHandler(IllegalArgumentException.class)
