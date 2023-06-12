@@ -23,6 +23,9 @@ public class Pedido {
     @Column(length = 30)
     private StatusPedido statusPedido;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Users user;
+
     public String getNomeProduto() {
         return nomeProduto;
     }
@@ -85,5 +88,13 @@ public class Pedido {
 
     public void setStatusPedido(StatusPedido statusPedido) {
         this.statusPedido = statusPedido;
+    }
+
+    public Users getUser() {
+        return user;
+    }
+
+    public void setUser(Users user) {
+        this.user = user;
     }
 }

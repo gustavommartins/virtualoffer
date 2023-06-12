@@ -15,6 +15,6 @@ public interface PedidoMapper {
     @Mapping(target="url", source = "urlProduto")
     @Mapping(target="imagem", source = "imagemProduto")
     @Mapping(target="statusPedido", source = "statusPedido", defaultValue = "AGUARDANDO")
-    Pedido criaNovoPedido(NovoPedidoDTO novoPedidoDTO);
+    Pedido mapper(NovoPedidoDTO novoPedidoDTO);
 
 }

@@ -4,14 +4,13 @@ import br.com.gustavom.virtualoffer.domain.NovoPedidoDTO;
 import br.com.gustavom.virtualoffer.enums.StatusPedido;
 import br.com.gustavom.virtualoffer.model.Pedido;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 
-public class PedidoMapperTest {
+class PedidoMapperTest {
 
     static NovoPedidoDTO novoPedidoDTO = new NovoPedidoDTO();
     static Pedido pedido = new Pedido();
@@ -22,7 +21,7 @@ public class PedidoMapperTest {
         novoPedidoDTO.setImagemProduto("Imagem");
         novoPedidoDTO.setUrlProduto("Url");
         novoPedidoDTO.setDescricaoProduto("Descricao");
-        pedido = PedidoMapper.INSTANCE.criaNovoPedido(novoPedidoDTO);
+        pedido = PedidoMapper.INSTANCE.mapper(novoPedidoDTO);
     }
 
     @Test
