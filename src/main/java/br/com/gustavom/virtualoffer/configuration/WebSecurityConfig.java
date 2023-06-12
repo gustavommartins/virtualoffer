@@ -13,6 +13,8 @@ import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 import javax.sql.DataSource;
+import java.util.ArrayList;
+import java.util.List;
 
 @Configuration
 public class WebSecurityConfig {
@@ -54,17 +56,32 @@ public class WebSecurityConfig {
 
     private void criaUsuarioDefaultSeNaoExistirUsuarios(UserDetailsManager user) {
         if(!user.userExists(ADMINISTRADOR)){
-            user.createUser(createDefaulUser());
+            createDefaulUser().forEach(user::createUser);
         }
     }
 
-    private UserDetails createDefaulUser() {
+    private List<UserDetails> createDefaulUser() {
         PasswordEncoder encoder = passwordEncoder();
-        return User.builder()
+        List<UserDetails> usuarios = new ArrayList<>();
+        UserDetails admin = User.builder()
                 .username(ADMINISTRADOR)
                 .password(encoder.encode(ADMINISTRADOR))
                 .roles("ADMIN")
                 .build();
+        UserDetails joao = User.builder()
+                .username("joao")
+                .password(encoder.encode("joao"))
+                .roles("USER")
+                .build();
+        UserDetails maria = User.builder()
+                .username("maria")
+                .password(encoder.encode("maria"))
+                .roles("USER")
+                .build();
+        usuarios.add(admin);
+        usuarios.add(joao);
+        usuarios.add(maria);
+        return usuarios;
     }
 
 }
